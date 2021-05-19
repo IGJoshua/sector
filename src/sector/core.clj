@@ -46,17 +46,13 @@
   ([pred] (matches "to match" pred))
   ([description pred]
    (fn [coll]
-     (if (seq coll)
-       (if-some [ret (pred (first coll))]
-         (values ret (rest coll))
+     (multiple-value-bind [[v r] (any coll)]
+       (if-some [ret (pred v)]
+         (values ret r)
          (far/error ::error
                     :expected description
                     :actual (first coll)
-                    :remaining coll))
-       (far/error ::error
-                  :expected description
-                  :actual nil
-                  :remaining nil)))))
+                    :remaining coll))))))
 
 (defn many
   ([parser] (many parser conj []))
