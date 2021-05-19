@@ -41,7 +41,7 @@
                   :remaining nil)))))
 
 (defn many
-  ([parser] (many conj []))
+  ([parser] (many parser conj []))
   ([parser rf init]
    (fn [coll]
      (let [ret (volatile! init)
