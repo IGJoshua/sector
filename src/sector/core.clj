@@ -13,16 +13,16 @@
 ;; Parsers are functions from sequences of tokens to multiple values, the first
 ;; being the parsed result, the second the sequence of remaining tokens.
 
-(defn eof
-  [coll]
-  (if (seq coll)
-    (far/error ::error
-               :expected "eof"
-               :actual (first coll)
-               :remaining coll)
-    (values
-     nil
-     nil)))
+(def eof
+  (fn [coll]
+   (if (seq coll)
+     (far/error ::error
+                :expected "eof"
+                :actual (first coll)
+                :remaining coll)
+     (values
+      nil
+      nil))))
 
 (defn matches
   ([pred] (matches "to match" pred))
