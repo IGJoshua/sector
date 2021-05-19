@@ -6,7 +6,7 @@
   <version>0.1.0-SNAPSHOT</version>
   <name>org.suskalo/sector</name>
   <description>FIXME: my new library.</description>
-  <url>https://github.com/org.suskalo/sector</url>
+  <url>https://github.com/IGJoshua/sector</url>
   <licenses>
     <license>
       <name>Eclipse Public License</name>
@@ -19,9 +19,9 @@
     </developer>
   </developers>
   <scm>
-    <url>https://github.com/org.suskalo/sector</url>
-    <connection>scm:git:git://github.com/org.suskalo/sector.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/org.suskalo/sector.git</developerConnection>
+    <url>https://github.com/IGJoshua/sector</url>
+    <connection>scm:git:git://github.com/IGJoshua/sector.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/IGJoshua/sector.git</developerConnection>
     <tag>v0.1.0-SNAPSHOT</tag>
   </scm>
   <dependencies>
