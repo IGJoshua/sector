@@ -4,7 +4,10 @@
     :refer [handler-bind handler-case restart-case
             values multiple-value-bind multiple-value-list
             tagbody go block return-from]])
-  (:refer-clojure :rename {comp fn-comp}))
+  (:refer-clojure
+   :rename {comp fn-comp
+            map seq-map
+            repeat fn-repeat}))
 
 (defmethod far/report-condition ::error
   [c & {:keys [expected actual]}]
@@ -173,6 +176,27 @@
 (defn if-pred
   [pred]
   (matches #(if (pred %) % nil)))
+
+(defn map
+  [f parser]
+  (fn [coll]
+    (f (parser coll))))
+
+(defn expect
+  ([pred parser] (expect "the predicate to pass" pred parser))
+  ([description pred parser]
+   (fn [coll]
+     (multiple-value-bind [[v r] (parser coll)]
+       (when-not (pred v)
+         (far/error ::error
+                    :expected description
+                    :actual v
+                    :remaining coll))
+       (values v r)))))
+
+(defn repeat
+  [n parser]
+  (apply comp (fn-repeat n parser)))
 
 (defn parse
   [parser coll]
