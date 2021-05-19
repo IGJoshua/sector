@@ -24,6 +24,24 @@
       nil
       nil))))
 
+(def none
+  (fn [coll]
+    (values nil coll)))
+
+(defn return
+  [val]
+  (fn [coll]
+    (values val coll)))
+
+(def any
+  (fn [coll]
+    (if (seq coll)
+      (values (first coll) (rest coll))
+      (far/error ::error
+                 :expected "any"
+                 :actual nil
+                 :remaining nil))))
+
 (defn matches
   ([pred] (matches "to match" pred))
   ([description pred]
@@ -155,10 +173,6 @@
   (fn [coll]
     (handler-case (parser coll)
       (::error [& _] (values nil coll)))))
-
-(defn none
-  [coll]
-  (values nil coll))
 
 (defn if-pred
   [pred]
