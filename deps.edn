@@ -1,7 +1,6 @@
 {:paths ["src"]
  :deps {org.clojure/clojure {:mvn/version "1.10.3"}
-        org.suskalo/farolero {:git/url "https://github.com/IGJoshua/farolero"
-                              :sha "f78341ebc8cd60197932ff8421ab3c8181c9024d"}}
+        org.suskalo/farolero {:mvn/version "1.1.1"}}
  :aliases
  {:dev {:extra-paths ["dev"]}
 
